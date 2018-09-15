@@ -18,7 +18,7 @@
 *.tar.gz
 *.rar
 
-# Intellij
+# Intellij folder
 /idea
 .idea
 
