@@ -2,6 +2,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ListIterator;
 
+/**
+ * Classe que implementa um {@link Gene}.
+ *
+ * @author <a href="mailto:yuri.arend@acad.pucrs.br">yuri.arend</a>
+ * @since 15/09/2018 07:06:00
+ */
 public class Gene {
     private String locus;
     private long begin;
@@ -59,19 +65,19 @@ public class Gene {
     public List<String> decode(int index) {
         List<String> codons = new ArrayList<String>();
         int count = index;
-        int LIMITE = 0;
+        int limite = 0;
         switch (index) {
             case 0:
-                LIMITE = 3;
+                limite = 3;
                 break;
             case 1:
-                LIMITE = 4;
+                limite = 4;
                 break;
             case 2:
-                LIMITE = 5;
+                limite = 5;
                 break;
         }
-        for (int i = 0; i <= this.bases.size() - LIMITE; i += 3) {
+        for (int i = 0; i <= this.bases.size() - limite; i += 3) {
             StringBuilder sb = new StringBuilder();
             for (int j = 0; j < 3; j++) {
                 String a = this.bases.get(count).toString();
@@ -144,10 +150,10 @@ public class Gene {
             if (contagemIniciada) {
                 count++;
             }
-            if (amino.equalsIgnoreCase("met") && !contagemIniciada) {
+            if ("met".equalsIgnoreCase(amino) && !contagemIniciada) {
                 contagemIniciada = true;
             }
-            if (amino.equalsIgnoreCase("stop")) {
+            if ("stop".equalsIgnoreCase(amino)) {
                 aux = count;
             }
         }

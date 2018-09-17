@@ -4,45 +4,58 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * Classe que implementa um {@link Genoma} a partir de um arquivo de entrada.
+ *
+ * @author <a href="mailto:yuri.arend@acad.pucrs.br">yuri.arend</a>
+ * @since 15/09/2018 14:37:00
+ */
 public class Genoma {
-    private static Genoma instance = null;
     private Map<String, Gene> genoma;
 
-    Genoma() {
+    public Genoma(String filePath) {
         genoma = new HashMap<>();
         try {
-            loadData(new File("./src/sequence.txt"));
+            loadDataFrom(new File(filePath));
         } catch (FileNotFoundException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }
 
-    private void loadData(File sourceFile) throws FileNotFoundException {
-        if (sourceFile == null)
+    public Map<String, Gene> getGenoma() {
+        return genoma;
+    }
+
+    private void loadDataFrom(File filePath) throws FileNotFoundException {
+        if (filePath == null) {
             return;
+        }
+
         Pattern pattern = Pattern.compile("(\\[(.*?)])");
         Pattern patloc = Pattern.compile("(\\[location=(\\d+)..(\\d+)])");
         Pattern patLocus = Pattern.compile("(\\[locus_tag=(.*?)])");
-        Scanner data = new Scanner(sourceFile);
+
+        Scanner data = new Scanner(filePath);
+
         String locus = "";
         long begin = -1;
         long end = -1;
-        List<Character> sequence = new ArrayList<>(200);
-        // Percorre o arquivo do genoma
+        List<Character> sequence = new ArrayList<>();
+
         while (data.hasNextLine()) {
             String line = data.nextLine();
             // Se � uma linha de cabe�alho ...
-            if (line.length() > 0 && line.charAt(0) == '>') {
+            if ((line.length() > 0) && (Objects.equals('>', line.charAt(0)))) {
                 if (begin != -1) { // Se j� tem um Gene para montar, monta e armazena
                     locus = "";
                     begin = -1;
                     end = -1;
-                    sequence = new ArrayList<>(200);
+                    sequence = new ArrayList<>();
                 }
                 Matcher matcher = pattern.matcher(line);
                 // Procura pelos dados
@@ -67,20 +80,6 @@ public class Genoma {
             Gene gene = new Gene(locus, begin, end, sequence);
             addGene(locus, gene); // Adiciona o gene no genoma com locus de key e gene como valor
         }
-        data.close();
-    }
-
-    Map<String, Gene> getGenoma() {
-        return genoma;
-    }
-
-    static synchronized Genoma getInstance() throws FileNotFoundException {
-        if (instance == null) {
-
-            instance = new Genoma();
-
-        }
-        return instance;
     }
 
     private void addGene(String locus, Gene gene) {
