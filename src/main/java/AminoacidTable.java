@@ -35,7 +35,7 @@ public class AminoacidTable {
 
         aminoacidTable.put("TTA", "L");// Leu
         aminoacidTable.put("TTG", "L");
-        aminoacidTable.put("CTT", "L");// Leu
+        aminoacidTable.put("CTT", "L");
         aminoacidTable.put("CTC", "L");
         aminoacidTable.put("CTA", "L");
         aminoacidTable.put("CTG", "L");
@@ -44,7 +44,7 @@ public class AminoacidTable {
         aminoacidTable.put("ATC", "I");
         aminoacidTable.put("ATA", "I");
 
-        aminoacidTable.put("ATG", "Met");
+        aminoacidTable.put("ATG", "Met");// Met
 
         aminoacidTable.put("GTT", "V");// Val
         aminoacidTable.put("GTC", "V");
@@ -74,8 +74,9 @@ public class AminoacidTable {
         aminoacidTable.put("TAT", "Y"); // Tyr
         aminoacidTable.put("TAC", "Y");
 
-        aminoacidTable.put("TAA", "Stop");
+        aminoacidTable.put("TAA", "Stop");//Stop
         aminoacidTable.put("TAG", "Stop");
+        aminoacidTable.put("TGA", "Stop");
 
         aminoacidTable.put("CAT", "H"); // His
         aminoacidTable.put("CAC", "H");
@@ -97,8 +98,6 @@ public class AminoacidTable {
 
         aminoacidTable.put("TGT", "C"); // Cys
         aminoacidTable.put("TGC", "C");
-
-        aminoacidTable.put("TGA", "Stop");
 
         aminoacidTable.put("TGG", "W"); // Trp
 

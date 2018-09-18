@@ -1,6 +1,5 @@
 import java.util.ArrayList;
 import java.util.List;
-import java.util.ListIterator;
 
 /**
  * Classe que implementa um {@link Gene}.
@@ -63,7 +62,7 @@ public class Gene {
     }
 
     public List<String> decode(int index) {
-        List<String> codons = new ArrayList<String>();
+        List<String> codons = new ArrayList<>();
         int count = index;
         int limite = 0;
         switch (index) {
@@ -91,7 +90,7 @@ public class Gene {
     }
 
     public List<String> decodeReverse(int index) {
-        List<String> codons = new ArrayList<String>();
+        List<String> codons = new ArrayList<>();
         int count = this.bases.size() - index - 1;
         for (int i = this.bases.size() - 1; i > 3; i -= 3) {
             StringBuilder sb = new StringBuilder();
@@ -113,52 +112,40 @@ public class Gene {
         List<String> lista4 = decodeReverse(0);
         List<String> lista5 = decodeReverse(1);
         List<String> lista6 = decodeReverse(2);
-        countRightSequence(lista1);
-        countRightSequence(lista2);
-        countRightSequence(lista3);
-        countRightSequence(lista4);
-        countRightSequence(lista5);
-        countRightSequence(lista6);
-        List<String> aux = lista1;
-        if (countRightSequence(lista2) > countRightSequence(aux)) {
-            aux = lista2;
+        List<String> theChosenOne = lista1;
+        if (countRightSequence(lista2) > countRightSequence(theChosenOne)) {
+            theChosenOne = lista2;
         }
-        if (countRightSequence(lista3) > countRightSequence(aux)) {
-            aux = lista3;
+        if (countRightSequence(lista3) > countRightSequence(theChosenOne)) {
+            theChosenOne = lista3;
         }
-        if (countRightSequence(lista4) > countRightSequence(aux)) {
-            aux = lista4;
+        if (countRightSequence(lista4) > countRightSequence(theChosenOne)) {
+            theChosenOne = lista4;
         }
-        if (countRightSequence(lista5) > countRightSequence(aux)) {
-            aux = lista5;
+        if (countRightSequence(lista5) > countRightSequence(theChosenOne)) {
+            theChosenOne = lista5;
         }
-        if (countRightSequence(lista6) > countRightSequence(aux)) {
-            aux = lista6;
+        if (countRightSequence(lista6) > countRightSequence(theChosenOne)) {
+            theChosenOne = lista6;
         }
 
-        return aux;
+        return theChosenOne;
 
     }
 
     public int countRightSequence(List<String> lista) {
         boolean contagemIniciada = false;
-        int count = 0;
-        int aux = 0;
-        ListIterator<String> lt = lista.listIterator();
-        while (lt.hasNext()) {
-            String amino = lt.next();
+        int counter = 0;
+        for (String amino : lista) {
             if (contagemIniciada) {
-                count++;
-            }
-            if ("met".equalsIgnoreCase(amino) && !contagemIniciada) {
+                counter++;
+            } else if ("Met".equalsIgnoreCase(amino)) {
                 contagemIniciada = true;
-            }
-            if ("stop".equalsIgnoreCase(amino)) {
-                aux = count;
+            } else if ("Stop".equalsIgnoreCase(amino)) {
+                return counter;
             }
         }
-
-        return aux;
+        return counter;
     }
 
     @Override

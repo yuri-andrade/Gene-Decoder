@@ -1,9 +1,13 @@
+import java.time.LocalDate;
+
 public class App {
     public static void main(String args[]) {
 
         try {
-            Genoma genomaCorreto = new Genoma("/home/yuri/projects/GeneDecoder/src/sequence.txt");
-            System.out.println(genomaCorreto.getGenoma().get("BQ2027_MB2305").getRightSequence());
+            Genoma genoma = new Genoma("/home/yuri/projects/GeneDecoder/src/sequence.txt");
+            System.out.println(LocalDate.now());
+            genoma.getGenoma().keySet().forEach(s -> System.out.println(genoma.getGenoma().get(s).getRightSequence()));
+
 //            for (String key : Genoma.getInstance().getGenoma().keySet()) {
 //
 //                System.out.println("----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
