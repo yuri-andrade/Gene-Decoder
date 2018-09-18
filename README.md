@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/yuri-andrade/Gene-Decoder.svg?token=RKSFRGTsmuz8Wm96pXCC&branch=master)](https://travis-ci.com/yuri-andrade/Gene-Decoder)
+
 # GeneDecode
 Trabalho de conclusão da disciplina de programação orientada a objetos
 
