@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -34,15 +35,15 @@ public class Gene {
     }
 
     public List<String> getCincoTresUm() {
-        return decode(0);
+        return decodeByFiveThreeOrder(0);
     }
 
     public List<String> getCincoTresDois() {
-        return decode(1);
+        return decodeByFiveThreeOrder(1);
     }
 
     public List<String> getCincoTresTres() {
-        return decode(2);
+        return decodeByFiveThreeOrder(2);
     }
 
     public String getLocus() {
@@ -61,33 +62,38 @@ public class Gene {
         return bases;
     }
 
-    public List<String> decode(int index) {
-        List<String> codons = new ArrayList<>();
-        int count = index;
-        int limite = 0;
-        switch (index) {
-            case 0:
-                limite = 3;
-                break;
-            case 1:
-                limite = 4;
-                break;
-            case 2:
-                limite = 5;
-                break;
-        }
-        for (int i = 0; i <= this.bases.size() - limite; i += 3) {
-            StringBuilder sb = new StringBuilder();
-            for (int j = 0; j < 3; j++) {
-                String a = this.bases.get(count).toString();
-                count++;
-                sb.append(a);
-            }
-            codons.add(AminoacidTable.getInstance().getAminoacid(sb.toString()));
-        }
+    /**
+     * Percorre a lista de bases do gene a partir do index passado
+     * preenchendo uma lista com os aminoácidos correspondentes a cada códon
+     *
+     * @param index
+     * @return Lista de aminoácidos correspondente ao index recebido
+     */
+    public List<String> decodeByFiveThreeOrder(int index) {
+        List<String> aminoAcids = new ArrayList<>();
+        Iterator iterator = bases.subList(index, bases.size()).iterator();
+        int counter = 0;
+        StringBuilder stringBuilder = new StringBuilder();
 
-        return codons;
+        while (iterator.hasNext()) {
+            stringBuilder.append(iterator.next());
+            counter++;
+            if (counter % 3 == 0) {
+                aminoAcids.add(AminoacidTable.getInstance().getAminoacid(stringBuilder.toString()));
+                stringBuilder = new StringBuilder();
+            }
+        }
+        return aminoAcids;
     }
+
+
+    public List<String> decodeByThreeFiveOrder(int index) {
+        List<String> aminoAcids = new ArrayList<>();
+
+
+        return null;
+    }
+
 
     public List<String> decodeReverse(int index) {
         List<String> codons = new ArrayList<>();
@@ -106,9 +112,9 @@ public class Gene {
 
     public List<String> getRightSequence() {
 
-        List<String> lista1 = decode(0);
-        List<String> lista2 = decode(1);
-        List<String> lista3 = decode(2);
+        List<String> lista1 = decodeByFiveThreeOrder(0);
+        List<String> lista2 = decodeByFiveThreeOrder(1);
+        List<String> lista3 = decodeByFiveThreeOrder(2);
         List<String> lista4 = decodeReverse(0);
         List<String> lista5 = decodeReverse(1);
         List<String> lista6 = decodeReverse(2);
