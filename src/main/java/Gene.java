@@ -64,9 +64,9 @@ public class Gene {
 
     /**
      * Percorre a lista de bases do gene a partir do index passado
-     * preenchendo uma lista com os aminoácidos correspondentes a cada códon
+     * preenchendo uma lista com os aminoácidos correspondentes a cada códon.
      *
-     * @param index
+     * @param index índice de inicio de contagem de códons
      * @return Lista de aminoácidos correspondente ao index recebido
      */
     public List<String> decodeByFiveThreeOrder(int index) {

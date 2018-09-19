@@ -2,17 +2,15 @@ import java.util.Arrays;
 import java.util.List;
 
 public class App {
-    public static void main(String args[]) {
+    public static void main(String[] args) {
 
         try {
             Genoma genoma = new Genoma("/home/yuri/projects/GeneDecoder/src/sequence.txt");
-           // genoma.getGenoma().keySet().forEach(s -> System.out.println(genoma.getGenoma().get(s).getRightSequence
-            // ()));
 
-            List<Character> basesList = Arrays.asList('G','A','T','G','A','C','A','G','G','A','C','T','G','C',
-                    'T','G','G','A','C','T','A','G','A','A');
+            List<Character> basesList = Arrays.asList('G', 'A', 'T', 'G', 'A', 'C', 'A', 'G', 'G', 'A', 'C', 'T', 'G', 'C',
+                    'T', 'G', 'G', 'A', 'C', 'T', 'A', 'G', 'A', 'A');
 
-            Gene gene = new Gene("locusTest", 0,0, basesList);
+            Gene gene = new Gene("locusTest", 0, 0, basesList);
             System.out.println(gene.getBases());
             System.out.println(gene.getCincoTresUm());
             System.out.println(gene.getCincoTresDois());
