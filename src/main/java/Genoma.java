@@ -50,7 +50,7 @@ public class Genoma {
         while (data.hasNextLine()) {
             String line = data.nextLine();
             // Se � uma linha de cabe�alho ...
-            if ((line.length() > 0) && (Objects.equals('>', line.charAt(0)))) {
+            if (line.length() > 0 && Objects.equals('>', line.charAt(0))) {
                 if (begin != -1) { // Se j� tem um Gene para montar, monta e armazena
                     locus = "";
                     begin = -1;
@@ -78,11 +78,8 @@ public class Genoma {
                 }
             }
             Gene gene = new Gene(locus, begin, end, sequence);
-            addGene(locus, gene); // Adiciona o gene no genoma com locus de key e gene como valor
+            genoma.put(locus, gene); // Adiciona o gene no genoma com locus de key e gene como valor
         }
     }
 
-    private void addGene(String locus, Gene gene) {
-        genoma.put(locus, gene);
-    }
 }

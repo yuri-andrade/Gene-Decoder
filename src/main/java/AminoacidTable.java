@@ -2,13 +2,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Classe Singleton que implementa um {@link AminoacidTable} populado com o mapeamento de codon para aminoácido.
+ * Classe Singleton que implementa um {@link AminoacidTable}
+ * populado com o mapeamento de codon para aminoácido.
  *
  * @author <a href="mailto:yuri.arend@acad.pucrs.br">yuri.arend</a>
  * @since 15/09/2018 07:10:00
  */
 public class AminoacidTable {
-    private static AminoacidTable instance = null;
+    private static AminoacidTable instance;
     private Map<String, String> aminoacidTable;
 
     private AminoacidTable() {

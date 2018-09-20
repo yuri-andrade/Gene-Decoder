@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
@@ -9,10 +10,10 @@ import java.util.List;
  * @since 15/09/2018 07:06:00
  */
 public class Gene {
-    private String locus;
-    private long begin;
-    private long end;
-    private List<Character> bases;
+    private final String locus;
+    private final long begin;
+    private final long end;
+    private final List<Character> bases;
 
     public Gene(String locus, long begin, long end, List<Character> bases) {
         super();
@@ -23,27 +24,27 @@ public class Gene {
     }
 
     public List<String> getTresCincoUm() {
-        return decodeReverse(0);
+        return decodeByThreeFiveOrder(AminoacidSequenceOrderEnum.AMINOACID_SEQUENCE_3_5_1);
     }
 
     public List<String> getTresCincoDois() {
-        return decodeReverse(1);
+        return decodeByThreeFiveOrder(AminoacidSequenceOrderEnum.AMINOACID_SEQUENCE_3_5_2);
     }
 
     public List<String> getTresCincoTres() {
-        return decodeReverse(2);
+        return decodeByThreeFiveOrder(AminoacidSequenceOrderEnum.AMINOACID_SEQUENCE_3_5_3);
     }
 
     public List<String> getCincoTresUm() {
-        return decodeByFiveThreeOrder(0);
+        return decodeByFiveThreeOrder(AminoacidSequenceOrderEnum.AMINOACID_SEQUENCE_5_3_1);
     }
 
     public List<String> getCincoTresDois() {
-        return decodeByFiveThreeOrder(1);
+        return decodeByFiveThreeOrder(AminoacidSequenceOrderEnum.AMINOACID_SEQUENCE_5_3_2);
     }
 
     public List<String> getCincoTresTres() {
-        return decodeByFiveThreeOrder(2);
+        return decodeByFiveThreeOrder(AminoacidSequenceOrderEnum.AMINOACID_SEQUENCE_5_3_3);
     }
 
     public String getLocus() {
@@ -63,95 +64,99 @@ public class Gene {
     }
 
     /**
-     * Percorre a lista de bases do gene a partir do index passado
+     * Percorre a lista de bases do gene a partir do enum passado
      * preenchendo uma lista com os aminoácidos correspondentes a cada códon.
      *
-     * @param index índice de inicio de contagem de códons
+     * @param aminoEnum Enum que representa o índice de inicio de contagem de códons
      * @return Lista de aminoácidos correspondente ao index recebido
      */
-    public List<String> decodeByFiveThreeOrder(int index) {
+
+    public List<String> decodeByFiveThreeOrder(AminoacidSequenceOrderEnum aminoEnum) {
         List<String> aminoAcids = new ArrayList<>();
-        Iterator iterator = bases.subList(index, bases.size()).iterator();
-        int counter = 0;
+        Iterator iterator = bases.subList(aminoEnum.getCode(), bases.size()).iterator();
         StringBuilder stringBuilder = new StringBuilder();
 
+        addGene(aminoAcids, iterator, stringBuilder);
+        return aminoAcids;
+    }
+
+    private void addGene(List<String> aminoAcids, Iterator iterator, StringBuilder stringBuilder) {
+        int counter = 0;
         while (iterator.hasNext()) {
             stringBuilder.append(iterator.next());
             counter++;
             if (counter % 3 == 0) {
                 aminoAcids.add(AminoacidTable.getInstance().getAminoacid(stringBuilder.toString()));
-                stringBuilder = new StringBuilder();
+                stringBuilder.setLength(0);
             }
         }
+    }
+
+    /**
+     * Inverte a lista de bases do gene e percorre a lista a partir do enum passado
+     * preenchendo uma lista com os aminoácidos correspondentes a cada códon.
+     *
+     * @param aminoEnum Enum que representa o índice de inicio de contagem de códons
+     * @return Lista de aminoácidos correspondente ao enum recebido
+     */
+    public List<String> decodeByThreeFiveOrder(AminoacidSequenceOrderEnum aminoEnum) {
+        List<String> aminoAcids = new ArrayList<>();
+        List<Character> basesInvertido = new ArrayList<>();
+        basesInvertido.addAll(this.bases);
+        Collections.reverse(basesInvertido);
+        Iterator iterator = basesInvertido.subList(aminoEnum.getCode(), basesInvertido.size()).iterator();
+        StringBuilder stringBuilder = new StringBuilder();
+        addGene(aminoAcids, iterator, stringBuilder);
+
         return aminoAcids;
     }
 
 
-    public List<String> decodeByThreeFiveOrder(int index) {
-        List<String> aminoAcids = new ArrayList<>();
-
-
-        return null;
-    }
-
-
-    public List<String> decodeReverse(int index) {
-        List<String> codons = new ArrayList<>();
-        int count = this.bases.size() - index - 1;
-        for (int i = this.bases.size() - 1; i > 3; i -= 3) {
-            StringBuilder sb = new StringBuilder();
-            for (int j = 0; j < 3; j++) {
-                String a = this.bases.get(count).toString();
-                count--;
-                sb.append(a);
-            }
-            codons.add(AminoacidTable.getInstance().getAminoacid(sb.toString()));
-        }
-        return codons;
-    }
-
     public List<String> getRightSequence() {
 
-        List<String> lista1 = decodeByFiveThreeOrder(0);
-        List<String> lista2 = decodeByFiveThreeOrder(1);
-        List<String> lista3 = decodeByFiveThreeOrder(2);
-        List<String> lista4 = decodeReverse(0);
-        List<String> lista5 = decodeReverse(1);
-        List<String> lista6 = decodeReverse(2);
-        List<String> theChosenOne = lista1;
-        if (countRightSequence(lista2) > countRightSequence(theChosenOne)) {
-            theChosenOne = lista2;
+        List<String> theChosenOne = decodeByFiveThreeOrder(AminoacidSequenceOrderEnum.AMINOACID_SEQUENCE_5_3_1);
+        ;
+        if (countRightSequence(decodeByFiveThreeOrder(AminoacidSequenceOrderEnum.AMINOACID_SEQUENCE_5_3_2)) > countRightSequence(theChosenOne)) {
+            theChosenOne = decodeByFiveThreeOrder(AminoacidSequenceOrderEnum.AMINOACID_SEQUENCE_5_3_2);
         }
-        if (countRightSequence(lista3) > countRightSequence(theChosenOne)) {
-            theChosenOne = lista3;
+        if (countRightSequence(decodeByFiveThreeOrder(AminoacidSequenceOrderEnum.AMINOACID_SEQUENCE_5_3_3)) > countRightSequence(theChosenOne)) {
+            theChosenOne = decodeByFiveThreeOrder(AminoacidSequenceOrderEnum.AMINOACID_SEQUENCE_5_3_3);
         }
-        if (countRightSequence(lista4) > countRightSequence(theChosenOne)) {
-            theChosenOne = lista4;
+        if (countRightSequence(decodeByThreeFiveOrder(AminoacidSequenceOrderEnum.AMINOACID_SEQUENCE_3_5_1)) > countRightSequence(theChosenOne)) {
+            theChosenOne = decodeByThreeFiveOrder(AminoacidSequenceOrderEnum.AMINOACID_SEQUENCE_3_5_1);
         }
-        if (countRightSequence(lista5) > countRightSequence(theChosenOne)) {
-            theChosenOne = lista5;
+        if (countRightSequence(decodeByThreeFiveOrder(AminoacidSequenceOrderEnum.AMINOACID_SEQUENCE_3_5_2)) > countRightSequence(theChosenOne)) {
+            theChosenOne = decodeByThreeFiveOrder(AminoacidSequenceOrderEnum.AMINOACID_SEQUENCE_3_5_2);
         }
-        if (countRightSequence(lista6) > countRightSequence(theChosenOne)) {
-            theChosenOne = lista6;
+        if (countRightSequence(decodeByThreeFiveOrder(AminoacidSequenceOrderEnum.AMINOACID_SEQUENCE_3_5_3)) > countRightSequence(theChosenOne)) {
+            theChosenOne = decodeByThreeFiveOrder(AminoacidSequenceOrderEnum.AMINOACID_SEQUENCE_3_5_3);
         }
 
         return theChosenOne;
 
     }
 
-    public int countRightSequence(List<String> lista) {
+    /**
+     * Método que percorre uma lista de aminoácidos e procura um aminoácido de inicio de contagem,
+     * caso encontre, é iniciada a busca pelo aminoácido de parada.
+     *
+     * @param aminoAcidsList lista de aminoácidos
+     * @return int com a diferença entre o aminoácido de inicio e o aminoácido de parada
+     */
+    public int countRightSequence(List<String> aminoAcidsList) {
         boolean contagemIniciada = false;
         int counter = 0;
-        for (String amino : lista) {
+        int stopCounter = 0;
+        for (String amino : aminoAcidsList) {
             if (contagemIniciada) {
                 counter++;
             } else if ("Met".equalsIgnoreCase(amino)) {
                 contagemIniciada = true;
             } else if ("Stop".equalsIgnoreCase(amino)) {
-                return counter;
+                stopCounter = counter;
             }
         }
-        return counter;
+        return Math.max(stopCounter, counter);
     }
 
     @Override

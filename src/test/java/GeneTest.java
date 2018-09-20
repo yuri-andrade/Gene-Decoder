@@ -18,7 +18,7 @@ class GeneTest {
     }
     @Test
     void getTresCincoUm() {
-        assertEquals("[K, I, R, S, S, G, Q]", gene.getTresCincoUm().toString());
+        assertEquals("[K, I, R, S, S, G, Q, Stop]", gene.getTresCincoUm().toString());
     }
 
     @Test
