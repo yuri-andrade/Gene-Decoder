@@ -74,20 +74,27 @@ public class Gene {
     public List<String> decodeByFiveThreeOrder(AminoacidSequenceOrderEnum aminoEnum) {
         List<String> aminoAcids = new ArrayList<>();
         Iterator iterator = bases.subList(aminoEnum.getCode(), bases.size()).iterator();
-        StringBuilder stringBuilder = new StringBuilder();
+        addGene(aminoAcids, iterator);
 
-        addGene(aminoAcids, iterator, stringBuilder);
         return aminoAcids;
     }
 
-    private void addGene(List<String> aminoAcids, Iterator iterator, StringBuilder stringBuilder) {
+    /**
+     * Método que recebe uma lista de Aminoácidos vazia e o iterator da lista de bases
+     * itera sobre a lista de bases e adiciona o aminoácido correspondente na mesma
+     *
+     * @param aminoAcids lista de aminoácidos que ira ser preenchida
+     * @param iterator   iterator da lista de bases do gene
+     */
+    private void addGene(List<String> aminoAcids, Iterator iterator) {
         int counter = 0;
+        StringBuilder stringBuilder = new StringBuilder();
         while (iterator.hasNext()) {
             stringBuilder.append(iterator.next());
             counter++;
             if (counter % 3 == 0) {
                 aminoAcids.add(AminoacidTable.getInstance().getAminoacid(stringBuilder.toString()));
-                stringBuilder.setLength(0);
+                stringBuilder = new StringBuilder();
             }
         }
     }
@@ -105,8 +112,7 @@ public class Gene {
         basesInvertido.addAll(this.bases);
         Collections.reverse(basesInvertido);
         Iterator iterator = basesInvertido.subList(aminoEnum.getCode(), basesInvertido.size()).iterator();
-        StringBuilder stringBuilder = new StringBuilder();
-        addGene(aminoAcids, iterator, stringBuilder);
+        addGene(aminoAcids, iterator);
 
         return aminoAcids;
     }
