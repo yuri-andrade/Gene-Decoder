@@ -1,14 +1,14 @@
 public class App {
     public static void main(String[] args) {
-
+//        List<Character> basesList = Arrays.asList('G', 'A', 'T', 'G', 'A', 'C',
+//                'A', 'G', 'G', 'A', 'C', 'T', 'G', 'C',
+//                'T', 'G', 'G', 'A', 'C', 'T', 'A', 'G', 'A', 'A');
+//        Gene gene = new Gene("locusTest", 0, 0, basesList);
+//        System.out.println(gene.getTresCincoUm());
         try {
-            Genoma genoma = new Genoma("/home/yuri/projects/GeneDecoder/src/sequence.txt");
+            Genoma genoma = new Genoma("src/sequence.txt");
 
-//            List<Character> basesList = Arrays.asList('G', 'A', 'T', 'G', 'A', 'C',
-//                    'A', 'G', 'G', 'A', 'C', 'T', 'G', 'C',
-//                    'T', 'G', 'G', 'A', 'C', 'T', 'A', 'G', 'A', 'A');
-//
-//            Gene gene = new Gene("locusTest", 0, 0, basesList);
+
 //            System.out.println(gene.getBases());
 //            System.out.println(gene.getCincoTresUm());
 //            System.out.println(gene.getCincoTresDois());
@@ -29,6 +29,7 @@ public class App {
 
 
         } catch (Exception e) {
+            e.printStackTrace();
             // TODO: handle exception
         }
     }

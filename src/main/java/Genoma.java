@@ -37,7 +37,7 @@ public class Genoma {
         }
 
         Pattern pattern = Pattern.compile("(\\[(.*?)])");
-        Pattern patloc = Pattern.compile("(\\[location=(\\d+)..(\\d+)])");
+        Pattern patternLocation = Pattern.compile("(\\[location=(\\d+)..(\\d+)])");
         Pattern patLocus = Pattern.compile("(\\[locus_tag=(.*?)])");
 
         Scanner data = new Scanner(filePath);
@@ -61,10 +61,10 @@ public class Genoma {
                 // Procura pelos dados
                 while (matcher.find()) {
                     String token = matcher.group(1);
-                    Matcher matchLoc = patloc.matcher(token);
-                    if (matchLoc.matches()) {
-                        begin = Long.parseLong(matchLoc.group(2));
-                        end = Long.parseLong(matchLoc.group(3));
+                    Matcher matchLocation = patternLocation.matcher(token);
+                    if (matchLocation.matches()) {
+                        begin = Long.parseLong(matchLocation.group(2));
+                        end = Long.parseLong(matchLocation.group(3));
                     } else {
                         Matcher matchLocus = patLocus.matcher(token);
                         if (matchLocus.matches()) {
@@ -81,5 +81,4 @@ public class Genoma {
             genoma.put(locus, gene); // Adiciona o gene no genoma com locus de key e gene como valor
         }
     }
-
 }
