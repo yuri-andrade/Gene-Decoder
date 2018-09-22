@@ -11,11 +11,12 @@ class GeneTest {
     Gene gene;
 
     @BeforeEach
-    void setaTeste(){
-        List<Character> basesList = Arrays.asList('G','A','T','G','A','C','A','G','G','A','C','T','G','C',
-        'T','G','G','A','C','T','A','G','A','A');
-        this.gene = new Gene("locusTest", 0,0, basesList);
+    void setaTeste() {
+        List<Character> basesList = Arrays.asList('G', 'A', 'T', 'G', 'A', 'C', 'A', 'G', 'G', 'A', 'C', 'T', 'G', 'C',
+                'T', 'G', 'G', 'A', 'C', 'T', 'A', 'G', 'A', 'A');
+        this.gene = new Gene("locusTest", 0, 0, basesList);
     }
+
     @Test
     void getTresCincoUm() {
         assertEquals("[K, I, R, S, S, G, Q, Stop]", gene.getTresCincoUm().toString());
@@ -49,5 +50,11 @@ class GeneTest {
     @Test
     void getRightSequence() {
         Assertions.assertEquals("[Met, T, G, L, L, D, Stop]", gene.getRightSequence().toString());
+    }
+
+    @Test
+    void howManyGenes() {
+        Genoma genoma = new Genoma("src/sequence.txt");
+        assertEquals(1995, genoma.getGenoma().size());
     }
 }

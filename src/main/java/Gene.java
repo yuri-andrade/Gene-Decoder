@@ -13,49 +13,37 @@ public class Gene {
     private final String locus;
     private final long begin;
     private final long end;
-    private List<Character> bases;
-    private List<String> cincoTresUm;
-    private List<String> cincoTresDois;
-    private List<String> cincoTresTres;
-    private List<String> tresCincoUm;
-    private List<String> tresCincoDois;
-    private List<String> tresCincoTres;
+    private final List<Character> bases;
 
     public Gene(String locus, long begin, long end, List<Character> bases) {
         this.locus = locus;
         this.begin = begin;
         this.end = end;
         this.bases = bases;
-        this.cincoTresUm = decodeByFiveThreeOrder(AminoacidSequenceOrderEnum.AMINOACID_SEQUENCE_5_3_1);
-        this.cincoTresDois = decodeByFiveThreeOrder(AminoacidSequenceOrderEnum.AMINOACID_SEQUENCE_5_3_2);
-        this.cincoTresTres = decodeByFiveThreeOrder(AminoacidSequenceOrderEnum.AMINOACID_SEQUENCE_5_3_3);
-        this.tresCincoUm = decodeByThreeFiveOrder(AminoacidSequenceOrderEnum.AMINOACID_SEQUENCE_3_5_1);
-        this.tresCincoDois = decodeByThreeFiveOrder(AminoacidSequenceOrderEnum.AMINOACID_SEQUENCE_3_5_2);
-        this.tresCincoTres = decodeByThreeFiveOrder(AminoacidSequenceOrderEnum.AMINOACID_SEQUENCE_3_5_3);
     }
 
     public List<String> getTresCincoUm() {
-        return tresCincoUm;
+        return decodeByThreeFiveOrder(AminoacidSequenceOrderEnum.AMINOACID_SEQUENCE_3_5_1);
     }
 
     public List<String> getTresCincoDois() {
-        return tresCincoDois;
+        return decodeByThreeFiveOrder(AminoacidSequenceOrderEnum.AMINOACID_SEQUENCE_3_5_2);
     }
 
     public List<String> getTresCincoTres() {
-        return tresCincoTres;
+        return decodeByThreeFiveOrder(AminoacidSequenceOrderEnum.AMINOACID_SEQUENCE_3_5_3);
     }
 
     public List<String> getCincoTresUm() {
-        return cincoTresUm;
+        return decodeByFiveThreeOrder(AminoacidSequenceOrderEnum.AMINOACID_SEQUENCE_5_3_1);
     }
 
     public List<String> getCincoTresDois() {
-        return cincoTresDois;
+        return decodeByFiveThreeOrder(AminoacidSequenceOrderEnum.AMINOACID_SEQUENCE_5_3_2);
     }
 
     public List<String> getCincoTresTres() {
-        return cincoTresTres;
+        return decodeByFiveThreeOrder(AminoacidSequenceOrderEnum.AMINOACID_SEQUENCE_5_3_3);
     }
 
     public String getLocus() {
@@ -85,7 +73,7 @@ public class Gene {
     public List<String> decodeByFiveThreeOrder(AminoacidSequenceOrderEnum aminoEnum) {
         List<String> aminoAcids = new ArrayList<>();
         Iterator iterator = bases.subList(aminoEnum.getCode(), bases.size()).iterator();
-        addGene(aminoAcids, iterator);
+        parseCodonsIntoAminoacids(aminoAcids, iterator);
 
         return aminoAcids;
     }
@@ -97,7 +85,7 @@ public class Gene {
      * @param aminoAcids lista de aminoácidos que ira ser preenchida
      * @param iterator   iterator da lista de bases do gene
      */
-    private void addGene(List<String> aminoAcids, Iterator iterator) {
+    private void parseCodonsIntoAminoacids(List<String> aminoAcids, Iterator iterator) {
         int counter = 0;
         StringBuilder stringBuilder = new StringBuilder();
         while (iterator.hasNext()) {
@@ -119,11 +107,10 @@ public class Gene {
      */
     public List<String> decodeByThreeFiveOrder(AminoacidSequenceOrderEnum aminoEnum) {
         List<String> aminoAcids = new ArrayList<>();
-        List<Character> basesInvertido = new ArrayList<>();
-        basesInvertido.addAll(this.bases);
+        List<Character> basesInvertido = new ArrayList<>(this.bases);
         Collections.reverse(basesInvertido);
         Iterator iterator = basesInvertido.subList(aminoEnum.getCode(), basesInvertido.size()).iterator();
-        addGene(aminoAcids, iterator);
+        parseCodonsIntoAminoacids(aminoAcids, iterator);
 
         return aminoAcids;
     }
@@ -136,30 +123,36 @@ public class Gene {
      */
     public List<String> getRightSequence() {
 
-        List<String> theChosenOne = this.cincoTresUm;
+        List<String> theRightAminoSequence = decodeByFiveThreeOrder(AminoacidSequenceOrderEnum.AMINOACID_SEQUENCE_5_3_1);
 
-        theChosenOne = (countRightSequence(this.cincoTresDois) > countRightSequence(theChosenOne))
-                ? this.cincoTresDois : theChosenOne;
+        if (countRightSequence(decodeByFiveThreeOrder(AminoacidSequenceOrderEnum.AMINOACID_SEQUENCE_5_3_2))
+                > countRightSequence(theRightAminoSequence)) {
+            theRightAminoSequence = decodeByFiveThreeOrder(AminoacidSequenceOrderEnum.AMINOACID_SEQUENCE_5_3_2);
+        }
+        if (countRightSequence(decodeByFiveThreeOrder(AminoacidSequenceOrderEnum.AMINOACID_SEQUENCE_5_3_3))
+                > countRightSequence(theRightAminoSequence)) {
+            theRightAminoSequence = decodeByFiveThreeOrder(AminoacidSequenceOrderEnum.AMINOACID_SEQUENCE_5_3_3);
+        }
+        if (countRightSequence(decodeByThreeFiveOrder(AminoacidSequenceOrderEnum.AMINOACID_SEQUENCE_3_5_1))
+                > countRightSequence(theRightAminoSequence)) {
+            theRightAminoSequence = decodeByThreeFiveOrder(AminoacidSequenceOrderEnum.AMINOACID_SEQUENCE_3_5_1);
+        }
+        if (countRightSequence(decodeByThreeFiveOrder(AminoacidSequenceOrderEnum.AMINOACID_SEQUENCE_3_5_2))
+                > countRightSequence(theRightAminoSequence)) {
+            theRightAminoSequence = decodeByThreeFiveOrder(AminoacidSequenceOrderEnum.AMINOACID_SEQUENCE_3_5_2);
+        }
+        if (countRightSequence(decodeByThreeFiveOrder(AminoacidSequenceOrderEnum.AMINOACID_SEQUENCE_3_5_3))
+                > countRightSequence(theRightAminoSequence)) {
+            theRightAminoSequence = decodeByThreeFiveOrder(AminoacidSequenceOrderEnum.AMINOACID_SEQUENCE_3_5_3);
+        }
 
-        theChosenOne = (countRightSequence(this.cincoTresTres) > countRightSequence(theChosenOne))
-                ? this.cincoTresTres : theChosenOne;
+        return theRightAminoSequence;
 
-        theChosenOne = (countRightSequence(this.tresCincoUm) > countRightSequence(theChosenOne))
-                ? this.tresCincoUm : theChosenOne;
-
-        theChosenOne = (countRightSequence(this.tresCincoDois) > countRightSequence(theChosenOne))
-                ? this.tresCincoDois : theChosenOne;
-
-        theChosenOne = (countRightSequence(this.tresCincoTres) > countRightSequence(theChosenOne))
-                ? this.tresCincoTres : theChosenOne;
-
-        return theChosenOne;
     }
 
     /**
-     * Método que percorre uma lista de aminoácidos e procura um aminoácido
-     * de inicio de contagem, caso encontre, é iniciada a busca
-     * pelo aminoácido de parada.
+     * Método que percorre uma lista de aminoácidos e procura um aminoácido de inicio de contagem,
+     * caso encontre, é iniciada a busca pelo aminoácido de parada.
      *
      * @param aminoAcidsList lista de aminoácidos
      * @return int com a diferença entre o aminoácido de inicio e o aminoácido de parada
