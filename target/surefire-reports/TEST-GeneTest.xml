@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="GeneTest" time="0.045" tests="7" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="GeneTest" time="0.423" tests="8" errors="0" skipped="0" failures="0">
   <properties>
     <property name="sun.desktop" value="gnome"/>
     <property name="awt.toolkit" value="sun.awt.X11.XToolkit"/>
@@ -17,7 +17,7 @@
     <property name="user.country" value="BR"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="sun.boot.library.path" value="/usr/lib/jvm/java-8-oracle/jre/lib/amd64"/>
-    <property name="sun.java.command" value="/home/yuri/projects/GeneDecoder/target/surefire/surefirebooter1912284354467562681.jar /home/yuri/projects/GeneDecoder/target/surefire 2018-09-17T08-54-04_097-jvmRun1 surefire239340085920495283tmp surefire_0822218550316812816tmp"/>
+    <property name="sun.java.command" value="/home/yuri/projects/GeneDecoder/target/surefire/surefirebooter6002656370170132712.jar /home/yuri/projects/GeneDecoder/target/surefire 2018-09-22T05-04-14_490-jvmRun1 surefire3008500813424099266tmp surefire_01310889351953142752tmp"/>
     <property name="surefire.test.class.path" value="/home/yuri/projects/GeneDecoder/target/test-classes:/home/yuri/projects/GeneDecoder/target/classes:/home/yuri/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.2.0/junit-jupiter-engine-5.2.0.jar:/home/yuri/.m2/repository/org/apiguardian/apiguardian-api/1.0.0/apiguardian-api-1.0.0.jar:/home/yuri/.m2/repository/org/junit/platform/junit-platform-engine/1.2.0/junit-platform-engine-1.2.0.jar:/home/yuri/.m2/repository/org/junit/platform/junit-platform-commons/1.2.0/junit-platform-commons-1.2.0.jar:/home/yuri/.m2/repository/org/opentest4j/opentest4j/1.1.0/opentest4j-1.1.0.jar:/home/yuri/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.2.0/junit-jupiter-api-5.2.0.jar:/home/yuri/.m2/repository/org/junit/platform/junit-platform-runner/1.2.0/junit-platform-runner-1.2.0.jar:/home/yuri/.m2/repository/org/junit/platform/junit-platform-launcher/1.2.0/junit-platform-launcher-1.2.0.jar:/home/yuri/.m2/repository/org/junit/platform/junit-platform-suite-api/1.2.0/junit-platform-suite-api-1.2.0.jar:/home/yuri/.m2/repository/junit/junit/4.12/junit-4.12.jar:/home/yuri/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:src/test/java/:"/>
     <property name="sun.cpu.endian" value="little"/>
     <property name="user.home" value="/home/yuri"/>
@@ -30,7 +30,7 @@
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.awt.graphicsenv" value="sun.awt.X11GraphicsEnvironment"/>
-    <property name="surefire.real.class.path" value="/home/yuri/projects/GeneDecoder/target/surefire/surefirebooter1912284354467562681.jar"/>
+    <property name="surefire.real.class.path" value="/home/yuri/projects/GeneDecoder/target/surefire/surefirebooter6002656370170132712.jar"/>
     <property name="sun.boot.class.path" value="/usr/lib/jvm/java-8-oracle/jre/lib/resources.jar:/usr/lib/jvm/java-8-oracle/jre/lib/rt.jar:/usr/lib/jvm/java-8-oracle/jre/lib/sunrsasign.jar:/usr/lib/jvm/java-8-oracle/jre/lib/jsse.jar:/usr/lib/jvm/java-8-oracle/jre/lib/jce.jar:/usr/lib/jvm/java-8-oracle/jre/lib/charsets.jar:/usr/lib/jvm/java-8-oracle/jre/lib/jfr.jar:/usr/lib/jvm/java-8-oracle/jre/classes"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="1.8.0_181-b13"/>
@@ -44,6 +44,7 @@
     <property name="localRepository" value="/home/yuri/.m2/repository"/>
     <property name="java.vendor.url.bug" value="http://bugreport.sun.com/bugreport/"/>
     <property name="java.io.tmpdir" value="/tmp"/>
+    <property name="idea.version" value="2018.2.1"/>
     <property name="java.version" value="1.8.0_181"/>
     <property name="user.dir" value="/home/yuri/projects/GeneDecoder"/>
     <property name="os.arch" value="amd64"/>
@@ -58,11 +59,12 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="52.0"/>
   </properties>
-  <testcase name="getTresCincoDois" classname="GeneTest" time="0.014"/>
+  <testcase name="getTresCincoDois" classname="GeneTest" time="0.001"/>
   <testcase name="getTresCincoTres" classname="GeneTest" time="0"/>
-  <testcase name="getRightSequence" classname="GeneTest" time="0.022"/>
-  <testcase name="getTresCincoUm" classname="GeneTest" time="0"/>
+  <testcase name="howManyGenes" classname="GeneTest" time="0.394"/>
+  <testcase name="getRightSequence" classname="GeneTest" time="0.002"/>
+  <testcase name="getTresCincoUm" classname="GeneTest" time="0.002"/>
   <testcase name="getCincoTresUm" classname="GeneTest" time="0.001"/>
-  <testcase name="getCincoTresDois" classname="GeneTest" time="0.001"/>
+  <testcase name="getCincoTresDois" classname="GeneTest" time="0.003"/>
   <testcase name="getCincoTresTres" classname="GeneTest" time="0"/>
 </testsuite>
