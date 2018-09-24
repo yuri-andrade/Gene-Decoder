@@ -53,9 +53,10 @@ public class Genoma {
         long begin = -1;
         long end = -1;
         List<Character> dnaBasesSequence = new ArrayList<>();
+        String line;
 
         while (data.hasNextLine()) {
-            String line = data.nextLine();
+            line = data.nextLine();
             if (isHeaderLine(line)) {
                 if (first) {
                     first = false;

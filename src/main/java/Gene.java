@@ -64,12 +64,12 @@ public class Gene {
 
     /**
      * Percorre a lista de bases do gene a partir do enum passado
-     * preenchendo uma lista com os aminoácidos correspondentes a cada códon.
+     * preenchendo uma lista com os aminoácidos correspondentes a cada códon,
+     * realizando a leitura no sentido 5'3'.
      *
      * @param aminoEnum Enum que representa o índice de inicio de contagem de códons
      * @return Lista de aminoácidos correspondente ao index recebido
      */
-
     public List<String> decodeByFiveThreeOrder(AminoacidSequenceOrderEnum aminoEnum) {
         List<String> aminoAcids = new ArrayList<>();
         Iterator iterator = bases.subList(aminoEnum.getCode(), bases.size()).iterator();
@@ -100,7 +100,8 @@ public class Gene {
 
     /**
      * Inverte a lista de bases do gene e percorre a lista a partir do enum passado
-     * preenchendo uma lista com os aminoácidos correspondentes a cada códon.
+     * preenchendo uma lista com os aminoácidos correspondentes a cada códon,
+     * realizando a leitura no sentido 3'5'.
      *
      * @param aminoEnum Enum que representa o índice de inicio de contagem de códons
      * @return Lista de aminoácidos correspondente ao enum recebido
@@ -152,11 +153,10 @@ public class Gene {
     }
 
     /**
-     * Método que percorre uma lista de aminoácidos e procura um aminoácido de inicio de contagem,
-     * caso encontre, é iniciada a busca pelo aminoácido de parada.
+     * Método que realiza a contagem da maior distância entre um aminoácido "Met" e um aminoácido "Stop".
      *
      * @param aminoAcidsList lista de aminoácidos
-     * @return int com a diferença entre o aminoácido de inicio e o aminoácido de parada
+     * @return int com a diferença entre um aminoácido "Met" e um aminoácido "Stop"
      */
     public int countRightSequence(List<String> aminoAcidsList) {
         boolean contagemIniciada = false;
