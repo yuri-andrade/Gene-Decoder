@@ -10,7 +10,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * Classe que implementa um {@link Genoma} a partir de um arquivo de entrada.
+ * Classe que implementa um {@link Genoma}.
  *
  * @author <a href="mailto:yuri.arend@acad.pucrs.br">yuri.arend</a>
  * @since 15/09/2018 14:37:00
@@ -31,6 +31,13 @@ public class Genoma {
         return genoma;
     }
 
+    /**
+     * Método que efetua a leitura de um arquivo FASTA e faz a montagem do genoma
+     * conforme faz a leitura dos genes no arquivo.
+     *
+     * @param filePath caminho do arquivo FASTA no disco
+     * @throws FileNotFoundException exception caso não encontre o arquivo no caminho especificado
+     */
     private void loadDataFrom(File filePath) throws FileNotFoundException {
         if (filePath == null) {
             return;
@@ -57,7 +64,7 @@ public class Genoma {
                     locusTag = "";
                     begin = -1;
                     end = -1;
-                    dnaBasesSequence = new ArrayList<>();
+                    dnaBasesSequence.clear();
                 }
                 Matcher patternMatcher = pattern.matcher(line);
                 while (patternMatcher.find()) {
