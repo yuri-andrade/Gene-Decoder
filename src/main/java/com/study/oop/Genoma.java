@@ -8,6 +8,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Scanner;
 import java.util.TreeMap;
+import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -18,6 +19,7 @@ import java.util.regex.Pattern;
  * @since 15/09/2018 14:37:00
  */
 public class Genoma {
+    Logger logger = Logger.getLogger(Genoma.class.getName());
     private Map<String, Gene> geneMap;
 
     public Genoma(String filePath) {
@@ -25,7 +27,7 @@ public class Genoma {
         try {
             loadDataFrom(new File(filePath));
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            logger.warning(e.getMessage());
         }
     }
 
