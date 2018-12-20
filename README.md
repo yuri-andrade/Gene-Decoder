@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.com/yuri-andrade/Gene-Decoder.svg?token=RKSFRGTsmuz8Wm96pXCC&branch=master)](https://travis-ci.com/yuri-andrade/Gene-Decoder)
-[![Quality Gate](https://sonarcloud.io/api/project_badges/measure?project=yuri-andrade_Gene-Decoder&metric=alert_status)](https://sonarcloud.io/dashboard?id=yuri-andrade_Gene-Decoder)
-![Coverage](https://sonarcloud.io/api/project_badges/measure?project=yuri-andrade_Gene-Decoder&metric=coverage)
+[![Quality Gate](https://sonarcloud.io/api/project_badges/measure?project=br.pucrs.poo%3AGeneDecoder&metric=alert_status)](https://sonarcloud.io/dashboard?id=br.pucrs.poo%3AGeneDecoder)
+![Coverage](https://sonarcloud.io/api/project_badges/measure?project=br.pucrs.poo%3AGeneDecoder&metric=coverage)
 
 # GeneDecode
 Trabalho de conclusão da disciplina de programação orientada a objetos
@@ -100,12 +100,12 @@ Existem 6 possibilidades de tradução para esta sequência:
 
 | Possibility |Agrupamento dos códons                  | Sequência de aminoácidos       |
 |-------------|----------------------------------------|--------------------------------|
-| 5’-3’ : 1   | GAT GAC AGG ACT GCT GGA CTA GAA        | D D K T A G L E                |
-| 5’-3’ : 2   | ATG ACA GGA CTG CTG GGA TGA AGA        | Met T G R R G Stop R           |
+| 5’-3’ : 1   | GAT GAC AGG ACT GCT GGA CTA GAA        | D D R T A G L E                |
+| 5’-3’ : 2   | ATG ACA GGA CTG CTG GGA TGA AGA        | Met T G L L D Stop             |
 | 5’-3’ : 3   | TGA CAG GAC TGC TGG ACT AGA            | Stop Q D C W T R               |
-| 3’-5’ : 1   | AAG ATC AGG TCG TCA GGA CAG TAG        | K I R C S G Q Stop             |
-| 3’-5’ : 2   | AGA AGT AGG GTC GTC AGG ACA GTA        | R S R V V R T V                |
-| 3’-5’ : 3   | AGA TCA GGT CGT CAG GAC AGT            | R S G R Q D S                  |
+| 3’-5’ : 1   | AAG ATC AGG TCG TCA GGA CAG TAG        | K I R S S G Q Stop             |
+| 3’-5’ : 2   | AGA AGT AGG GTC GTC AGG ACA GTA        | R S G R Q D S                  |
+| 3’-5’ : 3   | AGA TCA GGT CGT CAG GAC AGT            | D Q V V R T V                  |
 
 A sequência que apresenta maior distância entre um “Met” e um “Stop” é a sequência da linha 2.
   Portanto, é esta sequência que deve ser considerada como a sequência correta de
