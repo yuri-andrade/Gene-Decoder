@@ -1,3 +1,5 @@
+package com.study.oop;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -55,6 +57,6 @@ class GeneTest {
     @Test
     void howManyGenes() {
         Genoma genoma = new Genoma("src/sequence.txt");
-        assertEquals(1995, genoma.getGenoma().size());
+        assertEquals(1995, genoma.getGeneMap().size());
     }
 }

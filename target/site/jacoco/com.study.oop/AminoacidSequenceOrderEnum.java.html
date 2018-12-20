@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AminoacidSequenceOrderEnum.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">GeneDecoder</a> &gt; <a href="index.source.html" class="el_package">com.study.oop</a> &gt; <span class="el_source">AminoacidSequenceOrderEnum.java</span></div><h1>AminoacidSequenceOrderEnum.java</h1><pre class="source lang-java linenums">package com.study.oop;
+
+/**
+ * Enum que representa as possíveis sequências de leitura de um gene.
+ *
+ * @author &lt;a href=&quot;mailto:yuri.arend@acad.pucrs.br&quot;&gt;yuri.arend&lt;/a&gt;
+ * @since 20/09/2018 01:32:00
+ */
+<span class="fc" id="L9">public enum AminoacidSequenceOrderEnum {</span>
+<span class="fc" id="L10">    AMINOACID_SEQUENCE_5_3_1(0, &quot;5'3'-1 Order&quot;),</span>
+<span class="fc" id="L11">    AMINOACID_SEQUENCE_5_3_2(1, &quot;5'3'-2 Order&quot;),</span>
+<span class="fc" id="L12">    AMINOACID_SEQUENCE_5_3_3(2, &quot;5'3'-3 Order&quot;),</span>
+
+<span class="fc" id="L14">    AMINOACID_SEQUENCE_3_5_1(0, &quot;3'5'-1 Order&quot;),</span>
+<span class="fc" id="L15">    AMINOACID_SEQUENCE_3_5_2(1, &quot;3'5'-2 Order&quot;),</span>
+<span class="fc" id="L16">    AMINOACID_SEQUENCE_3_5_3(2, &quot;3'5'-3 Order&quot;);</span>
+
+    private Integer code;
+    private String label;
+
+
+<span class="fc" id="L22">    AminoacidSequenceOrderEnum(int code, String label) {</span>
+<span class="fc" id="L23">        this.code = code;</span>
+<span class="fc" id="L24">        this.label = label;</span>
+<span class="fc" id="L25">    }</span>
+
+
+    public Integer getCode() {
+<span class="fc" id="L29">        return code;</span>
+    }
+
+    public String getLabel() {
+<span class="nc" id="L33">        return label;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

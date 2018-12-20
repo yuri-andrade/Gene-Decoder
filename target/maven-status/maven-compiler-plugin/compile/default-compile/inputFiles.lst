@@ -1,5 +1,5 @@
-/home/yuri/projects/GeneDecoder/src/main/java/AminoacidTable.java
-/home/yuri/projects/GeneDecoder/src/main/java/App.java
-/home/yuri/projects/GeneDecoder/src/main/java/Genoma.java
-/home/yuri/projects/GeneDecoder/src/main/java/AminoacidSequenceOrderEnum.java
-/home/yuri/projects/GeneDecoder/src/main/java/Gene.java
+/home/yuri/projects/Gene-Decoder/src/main/java/com/study/oop/Genoma.java
+/home/yuri/projects/Gene-Decoder/src/main/java/com/study/oop/AminoacidTable.java
+/home/yuri/projects/Gene-Decoder/src/main/java/com/study/oop/Gene.java
+/home/yuri/projects/Gene-Decoder/src/main/java/com/study/oop/AminoacidSequenceOrderEnum.java
+/home/yuri/projects/Gene-Decoder/src/main/java/com/study/oop/App.java

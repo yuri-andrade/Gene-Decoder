@@ -1,3 +1,5 @@
+package com.study.oop;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
@@ -176,6 +178,6 @@ public class Gene {
 
     @Override
     public String toString() {
-        return "Gene [locus=" + locus + ", begin=" + begin + ", end=" + end + ", bases=" + bases + "]";
+        return "com.study.oop.Gene [locus=" + locus + ", begin=" + begin + ", end=" + end + ", bases=" + bases + "]";
     }
 }

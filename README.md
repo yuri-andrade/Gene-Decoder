@@ -1,4 +1,6 @@
 [![Build Status](https://travis-ci.com/yuri-andrade/Gene-Decoder.svg?token=RKSFRGTsmuz8Wm96pXCC&branch=master)](https://travis-ci.com/yuri-andrade/Gene-Decoder)
+[![Quality Gate](https://sonarcloud.io/api/project_badges/measure?project=yuri-andrade_Gene-Decoder&metric=alert_status)](https://sonarcloud.io/dashboard?id=yuri-andrade_Gene-Decoder)
+![Coverage](https://sonarcloud.io/api/project_badges/measure?project=yuri-andrade_Gene-Decoder&metric=coverage)
 
 # GeneDecode
 Trabalho de conclusão da disciplina de programação orientada a objetos
