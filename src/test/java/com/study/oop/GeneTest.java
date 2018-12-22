@@ -1,5 +1,7 @@
 package com.study.oop;
 
+import com.study.oop.entity.Gene;
+import com.study.oop.entity.Genoma;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

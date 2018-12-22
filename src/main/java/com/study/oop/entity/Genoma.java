@@ -1,14 +1,11 @@
-package com.study.oop;
+package com.study.oop.entity;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Scanner;
-import java.util.TreeMap;
-import java.util.logging.Logger;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -19,15 +16,16 @@ import java.util.regex.Pattern;
  * @since 15/09/2018 14:37:00
  */
 public class Genoma {
-    Logger logger = Logger.getLogger(Genoma.class.getName());
+    static final Logger logger = LogManager.getLogger(Genoma.class.getName());
     private Map<String, Gene> geneMap;
 
     public Genoma(String filePath) {
         geneMap = new TreeMap<>();
         try {
             loadDataFrom(new File(filePath));
+
         } catch (FileNotFoundException e) {
-            logger.warning(e.getMessage());
+            logger.error(e.getMessage());
         }
     }
 
@@ -88,12 +86,10 @@ public class Genoma {
             }
             addGeneInGenoma(locusTag, begin, end, dnaBasesSequence);
         }
-
-
     }
 
     /**
-     * Método que adiciona o com.study.oop.Gene lido no arquivo FASTA para dentro do com.study.oop.Genoma.
+     * Método que adiciona o com.study.oop.entity.Gene lido no arquivo FASTA para dentro do com.study.oop.entity.Genoma.
      *
      * @param locus    locus tag do gene extraída do arquivo FASTA
      * @param begin    início de DNA do gene extraída do arquivo FASTA

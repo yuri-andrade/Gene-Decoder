@@ -1,4 +1,4 @@
-package com.study.oop;
+package com.study.oop.enums;
 
 /**
  * Enum que representa as possíveis sequências de leitura de um gene.

@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.com/yuri-andrade/Gene-Decoder.svg?token=RKSFRGTsmuz8Wm96pXCC&branch=master)](https://travis-ci.com/yuri-andrade/Gene-Decoder)
+[![Build Status](https://travis-ci.com/yuri-andrade/gene-decoder.svg?branch=master)](https://travis-ci.com/yuri-andrade/gene-decoder)
 [![Quality Gate](https://sonarcloud.io/api/project_badges/measure?project=br.pucrs.poo%3AGeneDecoder&metric=alert_status)](https://sonarcloud.io/dashboard?id=br.pucrs.poo%3AGeneDecoder)
 ![Coverage](https://sonarcloud.io/api/project_badges/measure?project=br.pucrs.poo%3AGeneDecoder&metric=coverage)
 

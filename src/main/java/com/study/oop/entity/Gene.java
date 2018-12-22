@@ -1,4 +1,6 @@
-package com.study.oop;
+package com.study.oop.entity;
+
+import com.study.oop.enums.AminoacidSequenceOrderEnum;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -178,6 +180,6 @@ public class Gene {
 
     @Override
     public String toString() {
-        return "com.study.oop.Gene [locus=" + locus + ", begin=" + begin + ", end=" + end + ", bases=" + bases + "]";
+        return "com.study.oop.entity.Gene [locus=" + locus + ", begin=" + begin + ", end=" + end + ", bases=" + bases + "]";
     }
 }
