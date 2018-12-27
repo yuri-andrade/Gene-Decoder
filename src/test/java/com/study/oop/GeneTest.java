@@ -1,5 +1,6 @@
 package com.study.oop;
 
+import com.study.oop.controller.GenomaController;
 import com.study.oop.entity.AminoacidTable;
 import com.study.oop.entity.Gene;
 import com.study.oop.entity.Genoma;
@@ -94,6 +95,11 @@ class GeneTest {
             assertNull(e);
         }
         assertEquals(1995, Objects.requireNonNull(genoma).getGeneMap().size());
+    }
+
+    @Test
+    void controllerAppTest() {
+        GenomaController.main(null);
     }
 
     @Test
