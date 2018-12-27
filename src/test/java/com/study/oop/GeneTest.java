@@ -9,9 +9,11 @@ import org.junit.jupiter.api.Test;
 import java.io.FileNotFoundException;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 
 class GeneTest {
     private Gene gene;
@@ -32,6 +34,18 @@ class GeneTest {
             testException = e;
         } finally {
             assertNotNull(testException);
+        }
+    }
+
+    @Test
+    void readFileTest() {
+        FileNotFoundException testException = null;
+        try {
+            new Genoma("src/sequence.txt");
+        } catch (FileNotFoundException e) {
+            testException = e;
+        } finally {
+            assertNull(testException);
         }
     }
 
@@ -78,6 +92,6 @@ class GeneTest {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        assertEquals(1995, genoma.getGeneMap().size());
+        assertEquals(1995, Objects.requireNonNull(genoma).getGeneMap().size());
     }
 }

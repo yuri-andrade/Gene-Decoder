@@ -12,7 +12,7 @@ public class GenomaController {
         final Logger logger = LogManager.getLogger(Genoma.class.getName());
         try {
             Genoma genoma = new Genoma("src/sequence.txt");
-            Objects.requireNonNull(genoma).getGeneMap().keySet().forEach(System.out::println);
+            Objects.requireNonNull(genoma).getGeneMap().keySet().forEach(logger::info);
         } catch (FileNotFoundException e) {
             logger.error(e.getMessage());
         }
