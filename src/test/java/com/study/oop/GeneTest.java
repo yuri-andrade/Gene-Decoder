@@ -104,6 +104,6 @@ class GeneTest {
 
     @Test
     void testAminoacidTable() {
-        assertEquals(AminoacidTable.getInstance().aminoacidTableMap.size(), 64);
+        assertEquals(64, AminoacidTable.getInstance().getAminoacidTableMap().size());
     }
 }

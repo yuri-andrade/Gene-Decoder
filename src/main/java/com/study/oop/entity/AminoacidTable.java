@@ -13,7 +13,7 @@ import java.util.Objects;
  */
 public class AminoacidTable {
     private static AminoacidTable instance;
-    public Map<String, String> aminoacidTableMap;
+    private Map<String, String> aminoacidTableMap;
 
     private AminoacidTable() {
         aminoacidTableMap = new HashMap<>();
@@ -118,5 +118,9 @@ public class AminoacidTable {
         aminoacidTableMap.put("GGC", "G");
         aminoacidTableMap.put("GGA", "G");
         aminoacidTableMap.put("GGG", "G");
+    }
+
+    public Map<String, String> getAminoacidTableMap() {
+        return aminoacidTableMap;
     }
 }
