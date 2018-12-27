@@ -1,5 +1,6 @@
 package com.study.oop;
 
+import com.study.oop.entity.AminoacidTable;
 import com.study.oop.entity.Gene;
 import com.study.oop.entity.Genoma;
 import org.junit.jupiter.api.Assertions;
@@ -90,8 +91,13 @@ class GeneTest {
         try {
             genoma = new Genoma("src/sequence.txt");
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            assertNull(e);
         }
         assertEquals(1995, Objects.requireNonNull(genoma).getGeneMap().size());
+    }
+
+    @Test
+    void testAminoacidTable() {
+        assertEquals(AminoacidTable.getInstance().aminoacidTableMap.size(), 64);
     }
 }

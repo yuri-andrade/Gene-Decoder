@@ -13,14 +13,14 @@ import java.util.Objects;
  */
 public class AminoacidTable {
     private static AminoacidTable instance;
-    private Map<String, String> aminoacidTableMap;
+    public Map<String, String> aminoacidTableMap;
 
     private AminoacidTable() {
         aminoacidTableMap = new HashMap<>();
         populateAminoacidTable();
     }
 
-    static synchronized AminoacidTable getInstance() {
+    public static synchronized AminoacidTable getInstance() {
         if (Objects.equals(null, instance)) {
             instance = new AminoacidTable();
         }

@@ -50,22 +50,6 @@ public class Gene {
         return decodeByFiveThreeOrder(AminoacidSequenceOrderEnum.AMINOACID_SEQUENCE_5_3_3);
     }
 
-    public String getLocus() {
-        return locus;
-    }
-
-    public long getBegin() {
-        return begin;
-    }
-
-    public long getEnd() {
-        return end;
-    }
-
-    public List<Character> getBases() {
-        return bases;
-    }
-
     /**
      * Percorre a lista de bases do gene a partir do enum passado
      * preenchendo uma lista com os aminoácidos correspondentes a cada códon,
