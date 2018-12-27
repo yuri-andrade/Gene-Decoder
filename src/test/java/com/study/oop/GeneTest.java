@@ -6,19 +6,33 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.io.FileNotFoundException;
 import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 class GeneTest {
-    Gene gene;
+    private Gene gene;
 
     @BeforeEach
     void setaTeste() {
         List<Character> basesList = Arrays.asList('G', 'A', 'T', 'G', 'A', 'C', 'A', 'G', 'G', 'A', 'C', 'T', 'G', 'C',
                 'T', 'G', 'G', 'A', 'C', 'T', 'A', 'G', 'A', 'A');
         this.gene = new Gene("locusTest", 0, 0, basesList);
+    }
+
+    @Test
+    void trhowsExceptionTest() {
+        FileNotFoundException testException = null;
+        try {
+            new Genoma("error");
+        } catch (FileNotFoundException e) {
+            testException = e;
+        } finally {
+            assertNotNull(testException);
+        }
     }
 
     @Test
@@ -58,7 +72,12 @@ class GeneTest {
 
     @Test
     void howManyGenes() {
-        Genoma genoma = new Genoma("src/sequence.txt");
+        Genoma genoma = null;
+        try {
+            genoma = new Genoma("src/sequence.txt");
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
         assertEquals(1995, genoma.getGeneMap().size());
     }
 }

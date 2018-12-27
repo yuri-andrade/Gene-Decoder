@@ -1,11 +1,13 @@
 package com.study.oop.entity;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Scanner;
+import java.util.TreeMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -16,17 +18,12 @@ import java.util.regex.Pattern;
  * @since 15/09/2018 14:37:00
  */
 public class Genoma {
-    static final Logger logger = LogManager.getLogger(Genoma.class.getName());
+
     private Map<String, Gene> geneMap;
 
-    public Genoma(String filePath) {
+    public Genoma(String filePath) throws FileNotFoundException {
         geneMap = new TreeMap<>();
-        try {
-            loadDataFrom(new File(filePath));
-
-        } catch (FileNotFoundException e) {
-            logger.error(e.getMessage());
-        }
+        loadDataFrom(new File(filePath));
     }
 
     public Map<String, Gene> getGeneMap() {
@@ -48,8 +45,8 @@ public class Genoma {
         try (Scanner data = new Scanner(filePath)) {
             boolean first = true;
             String locusTag = null;
-            long begin = -1;
-            long end = -1;
+            long begin = Long.MIN_VALUE;
+            long end = Long.MIN_VALUE;
             List<Character> dnaBasesSequence = new ArrayList<>();
             String line;
 
@@ -60,9 +57,9 @@ public class Genoma {
                         first = false;
                     } else {
                         addGeneInGenoma(locusTag, begin, end, dnaBasesSequence);
-                        locusTag = "";
-                        begin = -1;
-                        end = -1;
+                        locusTag = null;
+                        begin = Long.MIN_VALUE;
+                        end = Long.MIN_VALUE;
                         dnaBasesSequence.clear();
                     }
                     Matcher patternMatcher = pattern.matcher(line);
