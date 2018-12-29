@@ -1,10 +1,10 @@
 package com.study.oop.entity;
 
+import com.study.oop.validator.GeneValidator;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.*;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  * Classe que implementa um {@link Genoma}.
@@ -33,30 +33,15 @@ public class Genoma {
      * @throws FileNotFoundException exception caso não encontre o arquivo no caminho especificado
      */
     private void loadDataFrom(File filePath) throws FileNotFoundException {
-        Pattern pattern = Pattern.compile("\\[locus_tag=(.*?)\\].*\\[location=(\\d+)\\D*(\\d+)\\]");
-
         try (Scanner data = new Scanner(filePath)) {
-            String locusTag = null;
-            long begin = Long.MIN_VALUE;
-            long end = Long.MIN_VALUE;
             Gene gene = new Gene();
-
             while (data.hasNextLine()) {
                 String line = data.nextLine();
                 if (isHeaderLine(line)) {
-                    gene = new Gene();
-                    Matcher matcher = pattern.matcher(line);
-                    if (matcher.find()) {
-                        locusTag = matcher.group(1);
-                        begin = Long.parseLong(matcher.group(2));
-                        end = Long.parseLong(matcher.group(3));
-                    }
+                    gene = GeneValidator.validate(line);
                 } else {
                     gene.setBases(mountSequence(gene, line));
                 }
-                gene.setLocus(locusTag);
-                gene.setBegin(begin);
-                gene.setEnd(end);
                 addGeneInGenoma(gene);
             }
         }
