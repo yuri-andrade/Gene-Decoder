@@ -2,12 +2,7 @@ package com.study.oop.entity;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Scanner;
-import java.util.TreeMap;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -38,76 +33,52 @@ public class Genoma {
      * @throws FileNotFoundException exception caso não encontre o arquivo no caminho especificado
      */
     private void loadDataFrom(File filePath) throws FileNotFoundException {
-        Pattern pattern = Pattern.compile("(\\[(.*?)\\])");
-        Pattern patternLocation = Pattern.compile("(\\[location=(\\d+)..(\\d+)\\])");
-        Pattern patternLocusTag = Pattern.compile("(\\[locus_tag=(.*?)\\])");
+        Pattern pattern = Pattern.compile("\\[locus_tag=(.*?)\\].*\\[location=(\\d+)\\D*(\\d+)\\]");
 
         try (Scanner data = new Scanner(filePath)) {
-            boolean first = true;
             String locusTag = null;
             long begin = Long.MIN_VALUE;
             long end = Long.MIN_VALUE;
-            List<Character> dnaBasesSequence = new ArrayList<>();
-            String line;
+            Gene gene = new Gene();
 
             while (data.hasNextLine()) {
-                line = data.nextLine();
+                String line = data.nextLine();
                 if (isHeaderLine(line)) {
-                    if (first) {
-                        first = false;
-                    } else {
-                        addGeneInGenoma(locusTag, begin, end, dnaBasesSequence);
-                        locusTag = null;
-                        begin = Long.MIN_VALUE;
-                        end = Long.MIN_VALUE;
-                        dnaBasesSequence.clear();
-                    }
-                    Matcher patternMatcher = pattern.matcher(line);
-                    while (patternMatcher.find()) {
-                        String token = patternMatcher.group(1);
-                        Matcher patterLocationMatcher = patternLocation.matcher(token);
-                        if (patterLocationMatcher.matches()) {
-                            begin = Long.parseLong(patterLocationMatcher.group(2));
-                            end = Long.parseLong(patterLocationMatcher.group(3));
-                        } else {
-                            Matcher patternLocusTagMatcher = patternLocusTag.matcher(token);
-                            if (patternLocusTagMatcher.matches()) {
-                                locusTag = patternLocusTagMatcher.group(2);
-                            }
-                        }
+                    gene = new Gene();
+                    Matcher matcher = pattern.matcher(line);
+                    if (matcher.find()) {
+                        locusTag = matcher.group(1);
+                        begin = Long.parseLong(matcher.group(2));
+                        end = Long.parseLong(matcher.group(3));
                     }
                 } else {
-                    mountSequence(dnaBasesSequence, line);
+                    gene.setBases(mountSequence(gene, line));
                 }
-
+                gene.setLocus(locusTag);
+                gene.setBegin(begin);
+                gene.setEnd(end);
+                addGeneInGenoma(gene);
             }
-            addGeneInGenoma(locusTag, begin, end, dnaBasesSequence);
         }
     }
 
-    /**
-     * Método que adiciona o com.study.oop.entity.Gene lido no arquivo FASTA para dentro do com.study.oop.entity.Genoma.
-     *
-     * @param locus    locus tag do gene extraída do arquivo FASTA
-     * @param begin    início de DNA do gene extraída do arquivo FASTA
-     * @param end      final do DNA do gene extraída do arquivo FASTA
-     * @param sequence sequência de DNA do gene extraída do arquivo FASTA
-     */
-    private void addGeneInGenoma(String locus, long begin, long end, List<Character> sequence) {
-        Gene gene = new Gene(locus, begin, end, sequence);
-        geneMap.put(locus, gene);
+    private void addGeneInGenoma(Gene gene) {
+        geneMap.put(gene.getLocus(), gene);
     }
 
     /**
-     * Método que monta a sequência de DNA do gene caractere à caractere da linha.
+     * Monta a sequência de bases do {@link Gene}.
      *
-     * @param sequence lista onde serão adicionados os DNAS
-     * @param line     linha atual do arquivo FASTA
+     * @param gene {@link Gene}
+     * @param line linha do arquivo FASTA
+     * @return lista de bases do gene atualizada
      */
-    private void mountSequence(List<Character> sequence, String line) {
-        for (int i = 0; i < line.length(); i++) {
-            sequence.add(line.charAt(i));
+    private List<Character> mountSequence(Gene gene, String line) {
+        List<Character> geneBases = gene.getBases();
+        for (Character c : line.toCharArray()) {
+            geneBases.add(c);
         }
+        return geneBases;
     }
 
     /**

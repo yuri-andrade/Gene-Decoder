@@ -13,9 +13,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
+import static org.junit.Assert.*;
 
 class GeneTest {
     private Gene gene;
@@ -105,5 +103,25 @@ class GeneTest {
     @Test
     void testAminoacidTable() {
         assertEquals(64, AminoacidTable.getInstance().getAminoacidTableMap().size());
+    }
+
+    @Test
+    void checkTheLastTest() {
+        try {
+            Genoma genoma = new Genoma("src/sequence.txt");
+            assertTrue(genoma.getGeneMap().containsKey("BQ2027_MB3946"));
+        } catch (FileNotFoundException e) {
+            assertNull(e);
+        }
+    }
+
+    @Test
+    void checkTheFirstTest() {
+        try {
+            Genoma genoma = new Genoma("src/sequence.txt");
+            assertTrue(genoma.getGeneMap().containsKey("BQ2027_MB0001"));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 }

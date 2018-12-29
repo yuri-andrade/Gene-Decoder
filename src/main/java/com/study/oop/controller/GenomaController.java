@@ -1,11 +1,11 @@
 package com.study.oop.controller;
 
 import com.study.oop.entity.Genoma;
+import java.io.FileNotFoundException;
+import java.util.Objects;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.io.FileNotFoundException;
-import java.util.Objects;
 
 public class GenomaController {
     public static void main(String[] args) {

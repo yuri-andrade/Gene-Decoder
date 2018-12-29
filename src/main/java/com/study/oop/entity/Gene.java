@@ -14,15 +14,42 @@ import java.util.List;
  * @since 15/09/2018 07:06:00
  */
 public class Gene {
-    private final String locus;
-    private final long begin;
-    private final long end;
-    private final List<Character> bases;
+    private String locus;
+    private long begin;
+    private long end;
+    private List<Character> bases = new ArrayList<>();
 
     public Gene(String locus, long begin, long end, List<Character> bases) {
         this.locus = locus;
         this.begin = begin;
         this.end = end;
+        this.bases = bases;
+    }
+
+    public Gene() {
+    }
+
+    public String getLocus() {
+        return locus;
+    }
+
+    public List<Character> getBases() {
+        return bases;
+    }
+
+    public void setLocus(String locus) {
+        this.locus = locus;
+    }
+
+    public void setBegin(long begin) {
+        this.begin = begin;
+    }
+
+    public void setEnd(long end) {
+        this.end = end;
+    }
+
+    public void setBases(List<Character> bases) {
         this.bases = bases;
     }
 
