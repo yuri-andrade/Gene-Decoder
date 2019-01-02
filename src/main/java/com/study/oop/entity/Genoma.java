@@ -1,10 +1,14 @@
 package com.study.oop.entity;
 
-import com.study.oop.validator.GeneValidator;
+import com.study.oop.creator.GeneCreator;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.*;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Scanner;
+import java.util.TreeMap;
 
 /**
  * Classe que implementa um {@link Genoma}.
@@ -38,7 +42,7 @@ public class Genoma {
             while (data.hasNextLine()) {
                 String line = data.nextLine();
                 if (isHeaderLine(line)) {
-                    gene = GeneValidator.validate(line);
+                    gene = GeneCreator.create(line);
                 } else {
                     gene.setBases(mountSequence(gene, line));
                 }
